@@ -1,68 +1,65 @@
-<h5>Edição de Produtos</h5>
-<p>Preencha os campos para editar um produto.</p>
-<hr/>
+<div class="card card-body" *ngIf="exibirPagina">
  
-<form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+    <h5>Edição de Produtos</h5>
+    <p>Utilize os campos para alterar os dados de um produto.</p>
+    <hr/>
 
-    <div *ngIf="mensagem" class = "mb-3 alert alert-primary"><strong>{{mensagem}}</strong></div>
-
-    <input type="hidden" formControlName="idProduto">
+    <form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
  
-    <div class="row mb-3">
-
-        <div class="col-md-6">
-            <label>Nome do produto:</label>
-            <input type="text" class="form-control" formControlName="nome" placeholder="Digite aqui"/>
-            <div class="text-danger" *ngIf = "form.nome.touched && form.nome.invalid">
-                <span *ngIf="form.nome.errors.required">
-                    Por favor, informe o nome do produto
-                </span>
+        <div *ngIf="mensagem" class="mb-3 alert alert-primary">
+            <strong>{{mensagem}}</strong>
+        </div>
+ 
+        <!-- campo oculto -->
+        <input type="hidden" formControlName="idProduto" />
+ 
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Nome do produto:</label>
+                <input type="text" class="form-control" formControlName="nome" />
+                <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                    <span *ngIf="form.nome.errors.required">
+                        Por favor, informe o nome do produto.
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Preço:</label>
+                <input type="text" class="form-control" formControlName="preco" />
+                <div class="text-danger" *ngIf="form.preco.touched && form.preco.invalid">
+                    <span *ngIf="form.preco.errors.required">
+                        Por favor, informe o preço do produto.
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Quantidade:</label>
+                <input type="text" class="form-control" formControlName="quantidade" />
+                <div class="text-danger" *ngIf="form.quantidade.touched && form.quantidade.invalid">
+                    <span *ngIf="form.quantidade.errors.required">
+                        Por favor, informe a quantidade do produto.
+                    </span>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-3">
-            <label>Preço:</label>
-            <input type="text" class="form-control" formControlName="preco" placeholder="Digite aqui"/>
-            <div class="text-danger" *ngIf = "form.preco.touched && form.preco.invalid">
-                <span *ngIf="form.preco.errors.required">
-                    Por favor, informe o preço do produto
-                </span>
+ 
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Descrição do produto:</label>
+                <textarea class="form-control" formControlName="descricao"></textarea>
+                <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
+                    <span *ngIf="form.descricao.errors.required">
+                        Por favor, informe a descrição do produto.
+                    </span>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-3">
-            <label>Quantidade:</label>
-            <input type="text" class="form-control" formControlName="quantidade" placeholder="Digite aqui"/>
-            <div class="text-danger" *ngIf = "form.quantidade.touched && form.quantidade.invalid">
-                <span *ngIf="form.quantidade.errors.required">
-                    Por favor, informe a quantidade do produto
-                </span>
+ 
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <input type="submit" [disabled]="!formEdicao.valid" value="Salvar Alterações" class="btn btn-primary" />
             </div>
         </div>
-
-    </div>
  
-    <div class="row mb-3">
-
-        <div class="col-md-12">
-            <label>Descrição do produto:</label>
-            <textarea class="form-control" formControlName="descricao" placeholder="Digite aqui"></textarea>
-            <div class="text-danger" *ngIf = "form.descricao.touched && form.descricao.invalid">
-                <span *ngIf="form.descricao.errors.required">
-                    Por favor, informe a descrição do produto
-                </span>
-            </div>
-        </div>
-
-    </div>
- 
-    <div class="row mb-3">
-
-        <div class="col-md-12">
-            <input type="submit" [disabled]="!formEdicao.valid" 
-                     value="Realizar Atualização" class="btn btn-primary"/>
-        </div>
-
-    </div>
- 
-</form>
+    </form>
+</div>

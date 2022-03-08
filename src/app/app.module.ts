@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+ 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_interceptors/TokenInterceptor';
  
@@ -17,9 +17,9 @@ import { AccountComponent } from './account/account.component';
 const routes: Routes = [
   { path: 'cadastrar-produtos', component: CadastrarProdutosComponent },
   { path: 'consultar-produtos', component: ConsultarProdutosComponent },
-  { path: 'editar-produtos/:id', component: EditarProdutosComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'account', component: AccountComponent }
+  { path: 'editar-produtos/:id', component: EditarProdutosComponent },  
+  { path: 'account', component: AccountComponent },
+  { path: '', component: LoginComponent } 
 ]
  
 @NgModule({
@@ -40,7 +40,7 @@ const routes: Routes = [
   ],
   providers: [
     {
-      provide : HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,
       multi : true
     }
@@ -48,3 +48,6 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 
+
+

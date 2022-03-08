@@ -6,17 +6,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">      
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="login">Autenticar Usuário</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf = "!isAuthenticated">
+          <a class="nav-link active" aria-current="page" routerLink="">Autenticar Usuário</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf = "!isAuthenticated">
           <a class="nav-link active" aria-current="page" routerLink="account">Criar Conta de Acesso</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Página inicial</a>
-        </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf = "isAuthenticated">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             Gerenciar Produtos
@@ -27,14 +24,19 @@
           </ul>
         </li>
       </ul>
+      <form class="d-flex text-white" *ngIf = "isAuthenticated">
+        <div class="mt-1">
+        Usuário:&nbsp;<strong>{{userLogin}}</strong>
+        &nbsp;&nbsp;&nbsp;
+        </div>
+        <button class = "btn btn-outline-light btn-sm" (click)="logout()">
+          Sair do Sistema
+        </button>
+      </form>
     </div>
   </div>
 </nav>
  
 <div class="container mt-3">
-  <div class="card">
-    <div class="card-body">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

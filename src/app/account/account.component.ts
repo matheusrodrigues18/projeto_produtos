@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AuthHelper } from '../_helpers/auth-helper';
 
 @Component({
   selector: 'app-account',
@@ -12,8 +13,9 @@ export class AccountComponent implements OnInit {
 
   mensagemSucesso : String = '';
   mensagemErro: String = '';
+  exibirPagina : boolean = false;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authHelper: AuthHelper) { }
 
   formAccount = new FormGroup({
 
@@ -28,6 +30,12 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if(this.authHelper.isAuthenticated()){
+      window.location.href = "/consultar-produtos";
+    }else{
+      this.exibirPagina = true;
+    }
   }
 
   onSubmit(): void{
